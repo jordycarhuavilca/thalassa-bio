@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto - Thalassa Bio</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Dosis:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header" class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../assets/images/logo-thalassa.webp" alt="Thalassa Bio">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="./nosotros.html">Nosotros</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-detail-section et_pb_section">
+            <div class="container" id="product-detail">
+                <p>Cargando producto...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer et_pb_section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../assets/images/logo-thalassa.webp" alt="Thalassa Bio" width="50" height="60">
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p>Email: contacto@thalassa-bio.pe</p>
+                    <p>WhatsApp: +51 952 229 658</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <a href="https://facebook.com/thalassa-bio" target="_blank">💙</a>
+                    <a href="https://instagram.com/thalassa-bio" target="_blank">📸</a>
+                    <a href="https://wa.me/51952229658" target="_blank">📱</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Thalassa Bio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product detail loading
+        document.addEventListener('DOMContentLoaded', async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+
+            if (!productId && productId !== 0) {
+                document.getElementById('product-detail').innerHTML = '<h2>Producto no encontrado</h2>';
+                return;
+            }
+
+            try {
+                const response = await fetch('../data/products.json');
+                const products = await response.json();
+                const product = products[productId];
+
+                if (product) {
+                    document.getElementById('product-detail').innerHTML = `
+                        <div class="product-detail-wrapper">
+                            <div class="product-image">
+                                <img src=".${product.imagen}" alt="${product.nombre}" onerror="this.src='https://via.placeholder.com/500x400?text=Producto'">
+                            </div>
+                            <div class="product-info">
+                                <h1>${product.nombre}</h1>
+                                <p class="product-price">${product.precio}</p>
+                                <div class="product-description">
+                                    <h3>Descripción</h3>
+                                    <p>${product.descripcion}</p>
+                                </div>
+                                <div class="product-benefits">
+                                    <h3>Beneficios</h3>
+                                    <ul>
+                                        <li>100% orgánico</li>
+                                        <li>Sostenible con el medio ambiente</li>
+                                        <li>Mejora la calidad del suelo</li>
+                                        <li>Incrementa la producción agrícola</li>
+                                    </ul>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="https://wa.me/51952229658?text=Hola, vi el producto ${product.nombre} en el sitio web y me gustaría más información." class="btn btn-primary" target="_blank">Comprar por WhatsApp</a>
+                                    <a href="../index.html" class="btn btn-secondary">Ver todos los productos</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('product-detail').innerHTML = '<h2>Producto no encontrado</h2>';
+                }
+            } catch (error) {
+                console.error('Error loading product:', error);
+                document.getElementById('product-detail').innerHTML = '<h2>Error al cargar el producto</h2>';
+            }
+        });
+    </script>
+</body>
+</html>

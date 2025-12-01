@@ -1,0 +1,20 @@
+[
+  {
+    "nombre": "Fertilizante a base de sargazo - 1 kilo",
+    "precio": "S/ 10.00",
+    "descripcion": "Fertilizante natural derivado del sargazo de Paracas, ideal para enriquecer suelos en agricultura sostenible. Contiene nutrientes esenciales para el crecimiento óptimo de tus plantas.",
+    "imagen": "./assets/images/fertilizante-1kilo.jpeg"
+  },
+  {
+    "nombre": "Fertilizante a base de sargazo - 0.5 kilo",
+    "precio": "S/ 5.00",
+    "descripcion": "Versión premium de nuestro fertilizante orgánico, procesado para máxima biodisponibilidad de nutrientes. Perfecto para cultivos intensivos y huertos orgánicos.",
+    "imagen": "./assets/images/fertilizante-mediokilo.jpeg"
+  },
+  {
+    "nombre": "Fertilizante a base de sargazo - 50 kilos",
+    "precio": "S/ 90.00",
+    "descripcion": "Fórmula especializada para cítricos, enriquecida con oligoelementos procedentes del sargazo marino. Promueve fruta de mayor calidad y sabor.",
+    "imagen": "./assets/images/fertilzante-cincuentakilo.jpeg"
+  }
+]
